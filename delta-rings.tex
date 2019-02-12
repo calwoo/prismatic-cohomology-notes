@@ -1,0 +1,160 @@
+\documentclass[12pt]{amsproc}   
+\usepackage[margin=1in, top=1in, bottom=1in]{geometry}                		
+\geometry{letterpaper} 
+\usepackage{amsthm}                  		
+\usepackage{graphicx}	
+\usepackage[mathscr]{euscript}	
+\usepackage{amssymb, amsmath}
+\usepackage{amscd}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+%theorem styles
+\newtheorem*{thm}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{remark}{Remark}
+\newtheorem*{notation}{Notation}
+
+%notational macros
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\sph}{\mathbb{S}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RP}{\mathbb{R}P}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\pt}{pt}
+\DeclareMathOperator{\BGL}{BGL}
+\DeclareMathOperator{\Bcrys}{B_{crys}}
+\newcommand{\eff}{\mathcal{F}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\cotensor}{\Box}
+\newcommand{\sma}{\wedge}
+\newcommand{\Ztwo}{\mathbb{Z}/(2)}
+\newcommand{\iso}{\cong}
+\newcommand{\htpyeq}{\simeq}
+\newcommand{\coproduct}{\amalg}
+\newcommand{\bd}{\textbf}
+\newcommand{\T}{\mathbb{T}}
+\def\*{\bullet}
+
+%arrows
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\inja}{\rightarrowtail}
+\newcommand{\surja}{\twoheadrightarrow}
+\newcommand{\isoarrow}{\xrightarrow{\sim}}
+
+%new operators
+\DeclareMathOperator{\Hom}{hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\h}{H}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\THH}{THH}
+\DeclareMathOperator{\HH}{HH}
+\DeclareMathOperator{\TC}{TC}
+\DeclareMathOperator{\TR}{TR}
+\DeclareMathOperator{\Hdr}{H_{dR}^*	}
+\DeclareMathOperator{\Hcrys}{H_{crys}^*}
+\DeclareMathOperator{\Het}{H_{et}^*}
+\DeclareMathOperator{\Hlogcrys}{H_{log-crys}^*}
+\DeclareMathOperator{\dlog}{dlog}
+\DeclareMathOperator{\invlim}{\varprojlim}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator{\dirlim}{\varinjlim}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\Fil}{Fil}
+\newcommand{\teich}{\underline}
+\newcommand{\pcomp}[1]{{#1}^{\sma}_p}
+\DeclareMathOperator{\denom}{denom}
+
+%functor names
+\DeclareMathOperator{\Tan}{\mathscr{T}an}
+\DeclareMathOperator{\Oh}{\mathscr{O}}
+\DeclareMathOperator{\F}{\mathbb{F}}
+\DeclareMathOperator{\Fr}{F}
+\DeclareMathOperator{\V}{V}
+\DeclareMathOperator{\Der}{\mathbf{Der}}
+\DeclareMathOperator{\Inf}{Inf}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Iso}{iso}
+\DeclareMathOperator{\K}{K}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Emb}{Emb}
+\DeclareMathOperator{\DPenv}{DP-env}
+\DeclareMathOperator{\logDPenv}{log-DP-env}
+
+%category names
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\catgrmod}{\mathscr{G}r\mathscr{M}od}
+\newcommand{\catmod}{\textbf{Mod}}
+\newcommand{\catcomod}{\mathscr{M}od^{\textbf{co}}}
+\newcommand{\catring}{\textbf{Ring}}
+\newcommand{\catalg}{\textbf{Alg}}
+\newcommand{\catset}{\textbf{Set}}
+\newcommand{\cataff}{\textbf{Aff}}
+\newcommand{\Top}{\textbf{Top}}
+\newcommand{\Mfld}{\text{Mfld}}
+\newcommand{\Aff}{\textbf{Aff}}
+\newcommand{\Sp}{\text{Sp}}
+\newcommand{\Spc}{\text{Spc}}
+\newcommand{\Ealg}[1]{\mathbb{E}_{#1}\textbf{-Alg}}
+\newcommand{\Einfalg}{\mathbb{E}_{\infty}\textbf{-Alg}}
+\newcommand{\catsetfin}{\textbf{Set}_\text{fin}}
+
+
+%other macros
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:}\text{[#1]}}}
+\newcommand{\citeme}[1]{\textcolor{blue}{\textbf{CITE ME:}\text{[#1]}}}
+\newcommand{\remove}[1]{\textcolor{orange}{\textbf{REMOVE?:}\text{[#1]}}}
+\newcommand{\ddd}{\cdot\cdot\cdot}
+
+
+%\title{$\delta$-rings}
+%\author{Calvin D. Woo}
+\begin{document}
+%\maketitle
+
+This is a set of notes on the theory of $\delta$-rings. Fix a prime $p$ for the rest of the note. The running slogan is that $\delta$-rings are "rings with a lift of Frobenius modulo $p$". In fact, if we take this slogan literally, it becomes a definition. Note that if $A$ is a commutative ring equipped with a map $\phi:A\ra A$ that is a lift of Frobenius on $A/p$, then for each $x\in A$ we have
+\[	\phi(x) = x^p + p\delta(x)	\]
+for some map of sets $\delta:A\ra A$. If $A$ is $p$-torsion free, then $\delta$ is \textit{uniquely} determined by this formula. The definition relations for $\delta(-)$ then come from the relations encoding the fact that $\phi(-)$ is a ring homomorphism.
+
+\begin{definition} A $\delta$-\textbf{ring} is a pair $(A,\delta)$ where $A$ is a commutative ring, $\delta:A\ra A$ a map of sets with $\delta(0)=\delta(1)=0$ and satisfying the identities
+\[	\delta(x+y)=\delta(x)+\delta(y)+\frac{x^p+y^p-(x+y)^p}{p}\]
+and
+\[	\delta(xy)=x^p\delta(y)+y^p\delta(x)+p\delta(x)\delta(y)	\]
+\end{definition}
+
+In the literature, a $\delta$-structure is sometimes called a $p$-derivation (especially by those who like $p$-adic differential equations).
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
