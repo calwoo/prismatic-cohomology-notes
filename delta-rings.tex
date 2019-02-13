@@ -121,6 +121,7 @@
 \newcommand{\Ealg}[1]{\mathbb{E}_{#1}\textbf{-Alg}}
 \newcommand{\Einfalg}{\mathbb{E}_{\infty}\textbf{-Alg}}
 \newcommand{\catsetfin}{\textbf{Set}_\text{fin}}
+\DeclareMathOperator{\Ring}{Ring}
 
 
 %other macros
@@ -145,7 +146,127 @@ and
 \[	\delta(xy)=x^p\delta(y)+y^p\delta(x)+p\delta(x)\delta(y)	\]
 \end{definition}
 
-In the literature, a $\delta$-structure is sometimes called a $p$-derivation (especially by those who like $p$-adic differential equations).
+In the literature, a $\delta$-structure is sometimes called a $p$-derivation (especially by those who like $p$-adic differential equations). In computations it is often useful to write the multiplicative relation for $\delta$ in the asymmetric form
+\[	\delta(xy) = \phi(x)\delta(y)+y^p\delta(x)\]
+
+A cute property of the Frobenius lift is that it is a homomorphism of $\delta$-rings.
+
+\begin{lemma} Let $A$ be a $\delta$-ring. Then $\phi:A\ra A$ is a $\delta$-map, that is, $\phi(\delta(x))=\delta(\phi(x))$ for all $x\in A$.
+\end{lemma}
+\begin{proof} Suppose $A$ is $p$-torsion free. Then we have $\delta(x)=\frac{1}{p}(\phi(x)-x^p)$. We can then verify directly that this is the case. Expanding,
+\[	\phi(\delta(x))=\frac{1}{p}(\phi^2(x)-\phi(x)^p)=\delta(\phi(x))	\]
+When $A$ has $p$-torsion, we can lift this argument to a $p$-torsionfree $\delta$-ring using free functors.
+\end{proof}
+
+A $p$-torsionfree ring with a lift of Frobenius $\phi$ furnishes an example of a $\delta$-ring. Since we have plenty of examples of this, we get plenty of examples of $\delta$-rings.
+
+\begin{example} 
+Some examples of $\delta$-rings.
+
+\begin{enumerate}
+\item $\Z$ with $\phi=\id$. Here, $\delta$ is pretty explicit, given by $\delta(n)=\frac{1}{p}(n-n^p)$. This is the initial object in the category of $\delta$-rings.
+\item The polynomial ring $\Z[x]$ has Frobenius lift $\phi$ determined by $\phi(x)=x^p + pg(x)$ for any $g(x)\in \Z[x]$.
+\item For any perfect field $k$ of characteristic $p>0$, the ring of Witt vectors $W(k)$ with $\phi$ given by the standard (unique!) Frobenius lift. Since there is only one such lift, $W(k)$ only admits a $\delta$-structure in one way. Geometrically, this corresponds to the $p$-cotangent space of $W(k)$ being trivial.
+\end{enumerate}
+\end{example}
+
+In an obvious way, $\delta$-rings form a category, which we'll call $\Ring^\delta$. Here the $p$ is implicit, and hence suppressed. A thing we would like is to understand whether $\Ring^\delta$ has any nice categorical properties. It is cumbersome to prove them with all these relations floating about, so we want a more principled way to talk about $\delta$-rings.
+
+\begin{prop} A $\delta$-structure on a ring $A$ is the same as a ring section $w:A\ra W_2(A)$ of the map $e:W_2(A)\ra A$ that forgets the second component.
+\end{prop}
+\begin{proof}
+We can write the truncated Witt vector $W_2(A)$ as the fiber product of
+\[\begin{tikzcd}
+&&A\arrow[d, "can"]\\
+A\arrow[r, "can"]&A/p\arrow[r, "\phi"]& A/p
+\end{tikzcd}\]
+Then it becomes clear that a ring map $A\ra W_2(A)$ that splits the projection of $W_2(A)$ to $A$ is the same data as a Frobenius lift on $A$.
+\end{proof}
+
+The functoriality of $W_2(-)$ shows that $\Ring^\delta$ is a bicomplete category, i.e., has all limit and colimits. Combining this with the adjoint functor theorem gives the useful fact that the forgetful functor $\Ring^\delta\ra \Ring$ has both a left and right functor-- the left adjoint is the \textbf{free $\delta$-ring construction}, and the right adjoint is given by the Witt vector construction.
+
+We give a description of the free $\delta$-ring on a single variable: $\Z\{x\}$ is the polynomial ring $\Z[x_0,x_1,x_2,...]$ with $x=x_0$ and $\delta(x_i)=x_{i+1}$. In particular, the free $\delta$-rings are $p$-torsion free. This, combined with the existence of all colimits give us a way to build $\delta$-rings using generators and relations. It's a good category indeed.
+
+\subsection{some ring-theoretic properties}
+$\delta$-rings are stable under some natural ring-theoretic operations like localization and quotients.
+
+\begin{lemma}[Localizations of $\delta$-rings] Let $A$ be a $\delta$-ring and $S\subset A$ a multiplicative subset stable under the Frobenius lift. Then there is a unique $\delta$-structure on the localization $S^{-1}A$ extending the one on $A$.
+\end{lemma}
+\begin{proof}\todo{prove this}\end{proof}
+
+\begin{lemma}[Completions of $\delta$-rings] Let $A$ be a $\delta$-ring and $I\subset A$ a finitely generated ideal that contains $p$. Then there is a unique $\delta$-structure on the $I$-adic completion $A^{\sma}_I$.
+\end{lemma}
+\begin{proof}\todo{prove this}\end{proof}
+
+As a consequence, $\Z_p$ with the $\delta$-structure given by the identity $\phi=\id$ is the initial object in the category of $p$-adically complete $\delta$-rings.
+
+\begin{lemma}[Etale extensions of $\delta$-rings] Fix a map $A\ra B$ of $p$-adically complete and $p$-torsion free rings, where $A$ is a $\delta$-ring. Suppose $A\ra B$ is etale modulo $p$. Then $B$ has a unique $\delta$-structure compatible with the one on $A$.
+\end{lemma}
+\begin{proof} By $p$-torsionfreeness of the two rings, we just need to exhibit a Frobenius lift on $B$ compatible with the one on $A$. By $p$-adic completeness, we just need to exhibit this Frobenius lift modulo $p^n$ for all $n\ge 1$.
+
+But then we do this by induction. When $n=1$, this is given by the pushout of the Frobenius on $A$, giving the relative Frobenius on $B$. For $n>1$, we appeal to the topological invariance of the etale site.
+\end{proof}
+
+\begin{lemma}[Quotients of $\delta$-rings] Let $A$ be a $\delta$-ring and $I\subset A$ an ideal such that $\delta(I)\subset I$ (stable under $\delta$). Then there is a unique $\delta$-structure on the quotient $A/I$ compatible with the one on $A$.
+\end{lemma}
+\begin{proof} Suffices to show that for $x\in A$ and $c\in I$, $\delta(x+c)\equiv\delta(x)\mod{I}$. But this follows from the additivity relation that $\delta$-rings must satisfy.
+\end{proof}
+
+\subsection{perfect $\delta$-rings}
+To get us closer to the theory of prismatic cohomology, we will study an important class of $\delta$-rings-- the perfect ones.
+
+Just like for regular rings, we'll say a $\delta$-ring $A$ is \textbf{perfect} if the Frobenius $\phi:A\ra A$ is an isomorphism. Perfect rings have incredible algebraic properties, but arguably the genesis of these traits come from the following derived fact:
+
+\begin{thm} Let $A$ be a perfect $\F_p$-algebra. Then the cotangent complex $L_{A/\F_p}$ vanishes. \end{thm}
+\begin{proof} Note that in characteristic $p>0$, the derivative of the Frobenius on a polynomial ring is given by
+\[	d\phi(x)=d(x^p)=px^{p-1}dx=0	\]
+The Frobenius is functorial, so taking a functorial simplicial resolution of $A$ by polynomial $\F_p$-algebras gives that the Frobenius induces the 0 map on the cotangent complex. But since it is also simultaneously an isomorphism by perfection, the cotangent complex must vanish $L_{A/\F_p}\htpyeq 0$.
+\end{proof}
+
+\begin{remark} As the deformation theory of $A$ is controlled by its cotangent complex, the above result says that there are no obstructions to lifting over perfect $\F_p$-algebras. As a consequence, we get the equivalence of the following categories:
+\begin{enumerate}
+\item Perfect $\F_p$-algebras.
+\item The category of flat $\Z/p^n$-algebras $\bar{A}$ with $\bar{A}/p$ perfect.
+\item $p$-adically complete and $p$-torsionfree $\Z_p$-algebras $\bar{A}$ with $\bar{A}/p$ perfect.
+\end{enumerate}
+The equivalence of (1) and (2) follow from deformation theory, and that of (2) and (3) follow from the characterization of the category of $p$-adically complete and $p$-torsionfree $\Z_p$-algebras as the inverse limit of the categories of flat $\Z/p^n$-algebras.
+\end{remark}
+
+To relate this to perfect $\delta$-rings, we use the following algebraic fact.
+
+\begin{lemma} Let $A$ be a $\delta$-ring and let $x\in A$ with $px=0$. Then $\phi(x)=0$. In particular, if $\phi$ is injective, then $A$ is $p$-torsionfree. \end{lemma}
+\begin{proof}
+In $A[1/p]$, we would have trivially $x=0$ so $\phi(x)=0$, so we assume that $A$ is a $\Z_{(p)}$-algebra. Expanding $\delta(px)$ we have
+\[	0 = \delta(px)=p^p\delta(x)+\phi(x)\delta(p)	\]
+Note that in $\Z_{(p)}$, we see that
+\[	\delta(p)=\frac{\phi(p)-p^p}{p}=\frac{p-p^p}{p}=1-p^{p-1}\in\Z^*_{(p)}	\]
+is a unit, so it suffices to show that $p^p\delta(x)=0$. But
+\[	p^p\delta(x)=p^{p-1}\cdot p\delta(x)=p^{p-1}(\phi(x)-x^p)=p^{p-2}(\phi(px)-px\cdot x^{p-1})=0	\]
+where we used that $px=0$ in the end.
+\end{proof}
+
+This leads to a classification of perfect $\delta$-rings: they just come from perfect $\F_p$-algebras!
+
+\begin{thm} The category of perfect $\delta$-rings that are $p$-adically complete is equivalent to the category of perfect $\F_p$-algebras.
+\end{thm}
+\begin{proof}
+The above lemma shows that perfect $\delta$-rings are always $p$-torsionfree, and so we have a forgetful functor from the category of perfect $p$-adically complete $\delta$-rings to the category of $p$-adically complete and $p$-torsionfree $\Z_p$-algebras $\bar{A}$ with $\bar{A}/p$ perfect. By the above remark, this is equivalent to the category of perfect $\F_p$-algebras. To go back to perfect $\delta$-rings, fix a perfect $\F_p$ algebra, and by deformation theory lift it to a $p$-adically complete and $p$-torsionfree ring. As the cotangent complex vanishes, such a lift is unique and is equipped with a unique lift of Frobenius. By $p$-torsionfreeness of the lift, this defines the required $\delta$-structure.
+\end{proof}
+
+
+\begin{remark}
+We can be explicit about the equivalence above. One functor is given by modulo $p$, $A\mapsto A/p$, while the other is given by the Witt vector construction $A\mapsto W(A)$. In other words, every $p$-adically complete perfect $\delta$-ring has the form $W(R)$ for some perfect $\F_p$-algebra $R$.
+\end{remark}
+
+\subsection{distinguished elements}
+
+
+
+
+
+
+
+
 
 
 
