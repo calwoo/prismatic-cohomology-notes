@@ -1,0 +1,275 @@
+\documentclass[12pt]{amsproc}   
+\usepackage[margin=1in, top=1in, bottom=1in]{geometry}                		
+\geometry{letterpaper} 
+\usepackage{amsthm}                  		
+\usepackage{graphicx}	
+\usepackage[mathscr]{euscript}	
+\usepackage{amssymb, amsmath}
+\usepackage{amscd}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+%theorem styles
+\newtheorem*{thm}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{remark}{Remark}
+\newtheorem*{notation}{Notation}
+
+%notational macros
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\sph}{\mathbb{S}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RP}{\mathbb{R}P}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\pt}{pt}
+\DeclareMathOperator{\BGL}{BGL}
+\DeclareMathOperator{\Bcrys}{B_{crys}}
+\newcommand{\eff}{\mathcal{F}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\cotensor}{\Box}
+\newcommand{\sma}{\wedge}
+\newcommand{\Ztwo}{\mathbb{Z}/(2)}
+\newcommand{\iso}{\cong}
+\newcommand{\htpyeq}{\simeq}
+\newcommand{\coproduct}{\amalg}
+\newcommand{\bd}{\textbf}
+\newcommand{\T}{\mathbb{T}}
+\def\*{\bullet}
+
+%arrows
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\inja}{\rightarrowtail}
+\newcommand{\surja}{\twoheadrightarrow}
+\newcommand{\isoarrow}{\xrightarrow{\sim}}
+
+%new operators
+\DeclareMathOperator{\Hom}{hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\h}{H}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\THH}{THH}
+\DeclareMathOperator{\HH}{HH}
+\DeclareMathOperator{\TC}{TC}
+\DeclareMathOperator{\TR}{TR}
+\DeclareMathOperator{\Hdr}{H_{dR}^*	}
+\DeclareMathOperator{\Hcrys}{H_{crys}^*}
+\DeclareMathOperator{\Het}{H_{et}^*}
+\DeclareMathOperator{\Hlogcrys}{H_{log-crys}^*}
+\DeclareMathOperator{\dlog}{dlog}
+\DeclareMathOperator{\invlim}{\varprojlim}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator{\dirlim}{\varinjlim}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\Fil}{Fil}
+\newcommand{\teich}{\underline}
+\newcommand{\pcomp}[1]{{#1}^{\sma}_p}
+\DeclareMathOperator{\denom}{denom}
+\DeclareMathOperator{\JRad}{JRad}
+
+%functor names
+\DeclareMathOperator{\Tan}{\mathscr{T}an}
+\DeclareMathOperator{\Oh}{\mathscr{O}}
+\DeclareMathOperator{\F}{\mathbb{F}}
+\DeclareMathOperator{\Fr}{F}
+\DeclareMathOperator{\V}{V}
+\DeclareMathOperator{\Der}{\mathbf{Der}}
+\DeclareMathOperator{\Inf}{Inf}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Iso}{iso}
+\DeclareMathOperator{\K}{K}
+\DeclareMathOperator{\DerivedL}{\mathbb{L}}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Emb}{Emb}
+\DeclareMathOperator{\DPenv}{DP-env}
+\DeclareMathOperator{\logDPenv}{log-DP-env}
+
+%category names
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\catgrmod}{\mathscr{G}r\mathscr{M}od}
+\newcommand{\catmod}{\textbf{Mod}}
+\newcommand{\catcomod}{\mathscr{M}od^{\textbf{co}}}
+\newcommand{\catring}{\textbf{Ring}}
+\newcommand{\catalg}{\textbf{Alg}}
+\newcommand{\catset}{\textbf{Set}}
+\newcommand{\cataff}{\textbf{Aff}}
+\newcommand{\Top}{\textbf{Top}}
+\newcommand{\Mfld}{\text{Mfld}}
+\newcommand{\Aff}{\textbf{Aff}}
+\newcommand{\Sp}{\text{Sp}}
+\newcommand{\Spc}{\text{Spc}}
+\newcommand{\Ealg}[1]{\mathbb{E}_{#1}\textbf{-Alg}}
+\newcommand{\Einfalg}{\mathbb{E}_{\infty}\textbf{-Alg}}
+\newcommand{\catsetfin}{\textbf{Set}_\text{fin}}
+\DeclareMathOperator{\Ring}{Ring}
+
+
+%other macros
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:}\text{[#1]}}}
+\newcommand{\citeme}[1]{\textcolor{blue}{\textbf{CITE ME:}\text{[#1]}}}
+\newcommand{\remove}[1]{\textcolor{orange}{\textbf{REMOVE?:}\text{[#1]}}}
+\newcommand{\ddd}{\cdot\cdot\cdot}
+
+
+%\title{$\delta$-rings}
+%\author{Calvin D. Woo}
+\begin{document}
+%\maketitle
+
+\section{definition}
+
+The category of $\delta$-pairs is formed by pairs $(A,I)$ where $A$ is a $\delta$-ring and $I\subset A$ is an ideal. Morphisms are given by relative ring maps that respect the $\delta$-structure.
+
+Recall that we had an equivalence between the categories of perfect $\F_p$-algebras and perfect and $p$-adically complete $\delta$-rings. Significantly, this relates objects living in characteristic $p$ with characteristic 0 objects. The category of prisms will generalize this relationship to all such "perfect" objects, i.e. the perfectoid rings.
+
+\begin{definition} A \textbf{prism} is a $\delta$-pair $(A,I)$ satisfying
+\begin{enumerate}
+\item $I\subset A$ defines a Cartier divisor on $\Spec A$.
+\item $A$ is derived $(p,I)$-complete.
+\item $p\in(I,\phi(I))$.
+\end{enumerate}
+\end{definition}
+
+As before, the last statement is equivalent to saying $I$ is Zariski locally generated by distinguished elements.
+
+\begin{definition} A map $(A,I)\ra (B,J)$ of prisms is \textbf{faithfully flat} if the map $A\ra B$ is $(p,I)$-completely flat, i.e., $A/(p,I)\ra B\otimes^{\DerivedL}_A A/(p,I)$ is flat, meaning the cotangent complex has cohomology only in degree zero.
+\end{definition}
+
+To set terminology, we'll call a prism $(A,I)$
+\begin{enumerate}
+\item \textit{perfect} if $A$ is perfect.
+\item \textit{crystalline} if $I=(p)$.
+\item \textit{bounded} if $A/I$ has bounded $p^\infty$-torsion.
+\end{enumerate}
+
+Everything we'll see will be bounded. 
+
+\begin{example}
+Some examples.
+
+\begin{enumerate}
+\item Any $p$-torsionfree and $p$-adically complete $\delta$-ring $A$ gives a bounded crystalline prism $(A,(p))$.
+\item As we will see, perfect prisms = perfectoid rings.
+\end{enumerate}
+\end{example}
+
+This category has a nice rigidity property:
+
+\begin{lemma}[Rigidity] Let $(A,I)\ra (B,J)$ be a map of prisms. Then $I\tensor_A B\ra J$ is an isomorphism, so a map of prisms is determined on the underlying $\delta$-rings.
+\end{lemma}
+\begin{proof} Both sides are locally generated by distinguished elements. By the irreducibility of distinguished elements, we can locally conclude on $\Spec B$.
+\end{proof}
+
+\section{perfect prisms}
+
+The most interesting class of prisms are the perfect prisms. We will show these are equivalent to the theory of perfectoid rings, and are in fact quite a bit more usable.
+
+To begin, we give a somewhat simplified definition of a perfectoid ring.
+
+\begin{definition} A commutative ring $R$ is \textbf{perfectoid} if it has the form $A/I$ for a perfect prism $(A,I)$. The category of perfectoid rings is the full subcategory of all commutative rings spanned by perfectoid rings.
+\end{definition}
+
+What gives? It turns out this definition coincides with that of integral perfectoids (though not with perfectoid Tate rings). 
+
+\begin{example} Some perfectoid rings.
+\begin{enumerate}
+\item Let $A$ be a perfect and $p$-adically complete $\delta$-ring, $I=(p)$. Then by the structure map of such rings, $A\iso W(R)$ for a perfect $\F_p$-algebra $R$. As $(W(R),(p))$ is a crystalline prism, we have that $R\iso A/I$ is a perfectoid. So the category of perfect $\F_p$-algebras is equivalent to the category of crystalline prisms.
+\item $A=\Z_p[t^{1/p^\infty}]^{\sma}_{(p,t)}$ with $\phi(t^{1/p^n})=t^{1/p^{n-1}}$ is a $p$-torsionfree $\delta$-ring, and $I=(t-p)$ is generated by a distinguished element. Hence $R=A/I=\Z_p[p^{1/p^\infty}]^{\sma}_{(p)}$ is a perfectoid ring.
+\end{enumerate}
+\end{example}
+
+The main theorem of this section is
+
+\begin{thm}[Perfect prisms$=$perfectoid rings] The mapping $(A,I)\mapsto A/I$ defines an equivalence of categories between perfect prisms and perfectoid rings.
+\end{thm}
+
+To prove this we need two helper lemmas.
+
+\begin{lemma} Let $R$ be a perfect $\F_p$-algebra. Let $f\in R$. Then $R[f^\infty]=R[f^{1/p^n}]$ for any $n$ (hence is killed by a small power of $f$, so its an \textit{almost zero} module).
+\end{lemma}
+\begin{proof}
+Suppose $x\in R$ such that $f^m x=0$ for some $m\ge 0$. Then $f^m x^{p^n}=0$ for all $n\ge 0$. By reducedness, $f^{m/p^n}x=0$ for any $n\ge 0$.
+\end{proof}
+
+\begin{lemma} Let $(A,I)$ be a perfect prism. Then $A/I[p^\infty]=A/I[p]$. In particular, perfect prisms are bounded.
+\end{lemma}
+
+Now we can prove the theorem.
+
+\begin{proof}
+We need to be able to recover the prism $(A,I)$ from $R=A/I$. We claim that $A\htpyeq W(R^\flat)$ where $R^\flat$ is Fontaine's tilt of $R$. As both sides are $p$-complete and perfect, it's enough to show that $A/p\htpyeq R^\flat$. 
+
+Let $d$ be a generator of $I$. Then $R=A/(d)$ so that $R/p=A/(p,d)$. As $A/p$ is a perfect $\F_p$-algebra, we can identify the tower
+\[	\cdots\ra R/p\xra{\phi} R/p\xra{\phi} R/p	\]
+with the tower
+\[	\cdots\ra A/(p,d^{p^2})\xra{\text{can}} A/(p,d^p)\xra{\text{can}} A/(p,d)	\]
+Taking inverse limits we get
+\[	(A/p)^{\sma}_{(d)}=R^\flat	\]
+But $A/p$ is $d$-complete (by the first lemma).
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

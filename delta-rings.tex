@@ -82,6 +82,7 @@
 \newcommand{\teich}{\underline}
 \newcommand{\pcomp}[1]{{#1}^{\sma}_p}
 \DeclareMathOperator{\denom}{denom}
+\DeclareMathOperator{\JRad}{JRad}
 
 %functor names
 \DeclareMathOperator{\Tan}{\mathscr{T}an}
@@ -260,10 +261,35 @@ We can be explicit about the equivalence above. One functor is given by modulo $
 
 \subsection{distinguished elements}
 
+From now on until specified otherwise, we assume that any commutative ring we see now are $p$-local, i.e. $p\in\JRad(A)$, where $\JRad(A)$ is the Jacobson radical of $A$. In particular, any $p$-adically complete ring is so.
 
+In the previous sections, the fact that $\delta(p)$ was a unit came in handy in relating perfect $\delta$-rings to perfect $\F_p$-algebras. It would do us well to give a name to elements with this property.
 
+\begin{definition} Let $R$ be a $\delta$-ring. An element $d\in R$ is called \textbf{distinguished} if $\delta(d)$ is a unit. (This terminology dates back to Fontaine).
+\end{definition}
 
+The slogan is that a distinguished element is a "deformation" of $p$. As ring homomorphisms preserve units, we note that any morphism of $\delta$-rings preserves distinguished elements. In fact, it just needs to commute with $\delta$: the Frobenius lift $\phi$ commutes with $\delta$, and so we see that $\phi$ preserves distinguished elements. Even better, as our rings are $p$-local, if $\phi(d)$ is distinguished so is $d$.
 
+\begin{example}
+Here are some examples of distinguished elements in $\delta$-rings.
+\begin{enumerate} 
+\item (\textit{Crystalline cohomology}) Let $A=\Z_{(p)}$ with $d=p$. More generally, for any $\delta$-ring $A$ with $p\in\JRad(A)$, the image of $p\in A$ is distinguished.
+\item (\textit{Breuil-Kisin cohomology}) Fix a discretely-valued extension of $K/\Q_p$ with uniformizer $\pi$. Let $W(k)\subset\Oh_K$ be the maximal unramified subring. Let $A=W(k)[\![u]\!]$ with $\delta$-structure induced by the canonical one on $W(k)$ and satisfying $\phi(u)=u^p$. There is a $W(k)$-equivariant surjection $A\ra\Oh_K$ determined by $u\mapsto\pi$. Any generator of the kernel of this map is distinguished.
+\end{enumerate}
+\end{example}
+
+\begin{example} We construct a universal $p$-local $\delta$-ring $A$ with a distinguished element $d\in A$. Take the free $\delta$-ring on an element $\Z\{d\}$. Maps out of this classify $\delta$-rings with a choice of \textit{any} element in it. To ensure that the image of $\delta(d)$ is  unit, we can freely adjoin its inverse to our free $\delta$-ring to get $\Z_{(p)}\{d,\delta(d)^{-1}\}$. But this can be written as the localization $S^{-1}\Z_{(p)}\{d\}$ along the multiplicative set $S=\{\delta(d),\phi(\delta(d)),\phi^2(\delta(d)),...\}$. This ring may no longer be $p$-local, so for extra measure we $p$-localize again.
+\end{example}
+
+An important class of distinguished elements can be characterized when we are in the context of a perfect $p$-adically complete $\delta$-ring. In this case we have seen that such rings are $W(R)$ for some perfect $\F_p$-algebra $R$, and so its elements have Teichmuller expansions.
+
+\begin{lemma} Let $R$ be a perfect $\F_p$-algebra. Then an element $d\in W(R)$ is distinguished if and only if the coefficient of $p$ in its Teichmuller expansion is a unit. All such distinguished elements are thus nonzero-divisors.
+\end{lemma}
+\begin{proof}
+Fix an element $d$ and its Teichmuller expansion $\sum_{i\ge 0} [a_i]p^i$. From the formula $\delta(d)=\frac{\phi(d)-d^p}{p}$ and the formula for the Frobenius $\phi([a_0])=[a_0^p]$, we get that mod $p$, $\delta(d)\equiv [a_1^p]$. As $W(R)$ is $p$-adically complete, it follows that $\delta(d)$ is a unit precisely when $a_1\in R$ is a unit.
+
+To see the second claim, we consider the Teichmuller expansion of $xd=0$, where $x$ is an element killing $d$.
+\end{proof}
 
 
 

@@ -1,0 +1,361 @@
+\documentclass[12pt]{amsproc}   
+\usepackage[margin=1in, top=1in, bottom=1in]{geometry}                		
+\geometry{letterpaper} 
+%\usepackage{fourier}
+\usepackage{amsthm}                  		
+\usepackage{graphicx}	
+\usepackage[mathscr]{euscript}	
+\usepackage{amssymb, amsmath}
+\usepackage{amscd}
+\usepackage{tikz-cd}
+\usepackage{xcolor}
+\usepackage{csquotes}
+
+%Emily Riehl's special blackboard bold characters
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+%theorem styles
+\newtheorem*{thm}{Theorem}
+\newtheorem*{prop}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{cor}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{remark}{Remark}
+\newtheorem*{notation}{Notation}
+
+%notational macros
+\newcommand{\A}{\mathscr{A}}
+\newcommand{\sph}{\mathbb{S}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\RP}{\mathbb{R}P}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\DeclareMathOperator{\pt}{pt}
+\DeclareMathOperator{\BGL}{BGL}
+\DeclareMathOperator{\Bcrys}{B_{crys}}
+\newcommand{\eff}{\mathcal{F}}
+\newcommand{\tensor}{\otimes}
+\newcommand{\cotensor}{\Box}
+\newcommand{\sma}{\wedge}
+\newcommand{\Ztwo}{\mathbb{Z}/(2)}
+\newcommand{\iso}{\cong}
+\newcommand{\htpyeq}{\simeq}
+\newcommand{\coproduct}{\amalg}
+\newcommand{\bd}{\textbf}
+\newcommand{\T}{\mathbb{T}}
+\def\*{\bullet}
+
+%arrows
+\newcommand{\ra}{\rightarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\inja}{\rightarrowtail}
+\newcommand{\surja}{\twoheadrightarrow}
+\newcommand{\isoarrow}{\xrightarrow{\sim}}
+
+%new operators
+\DeclareMathOperator{\Hom}{hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\h}{H}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Nat}{Nat}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\THH}{THH}
+\DeclareMathOperator{\HH}{HH}
+\DeclareMathOperator{\TC}{TC}
+\DeclareMathOperator{\TR}{TR}
+\DeclareMathOperator{\Hdr}{H_{dR}^*	}
+\DeclareMathOperator{\Hcrys}{H_{crys}^*}
+\DeclareMathOperator{\Het}{H_{et}^*}
+\DeclareMathOperator{\Hlogcrys}{H_{log-crys}^*}
+\DeclareMathOperator{\dlog}{dlog}
+\DeclareMathOperator{\invlim}{\varprojlim}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator{\dirlim}{\varinjlim}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\Fil}{Fil}
+\newcommand{\teich}{\underline}
+\newcommand{\pcomp}[1]{{#1}^{\sma}_p}
+\DeclareMathOperator{\denom}{denom}
+\DeclareMathOperator{\JRad}{JRad}
+\DeclareMathOperator{\prism}{\mathbbe{\Delta}}
+\DeclareMathOperator{\RGamma}{R\Gamma}
+
+%functor names
+\DeclareMathOperator{\Tan}{\mathscr{T}an}
+\DeclareMathOperator{\Oh}{\mathscr{O}}
+\DeclareMathOperator{\F}{\mathbb{F}}
+\DeclareMathOperator{\Fr}{F}
+\DeclareMathOperator{\V}{V}
+\DeclareMathOperator{\Der}{\mathbf{Der}}
+\DeclareMathOperator{\Inf}{Inf}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\Iso}{iso}
+\DeclareMathOperator{\K}{K}
+\DeclareMathOperator{\DerivedL}{\mathbb{L}}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Emb}{Emb}
+\DeclareMathOperator{\dR}{dR}
+\DeclareMathOperator{\DPenv}{DP-env}
+\DeclareMathOperator{\logDPenv}{log-DP-env}
+
+%category names
+\newcommand{\C}{\mathscr{C}}
+\newcommand{\D}{\mathscr{D}}
+\newcommand{\catgrmod}{\mathscr{G}r\mathscr{M}od}
+\newcommand{\catmod}{\textbf{Mod}}
+\newcommand{\catcomod}{\mathscr{M}od^{\textbf{co}}}
+\newcommand{\catring}{\textbf{Ring}}
+\newcommand{\catalg}{\textbf{Alg}}
+\newcommand{\catset}{\textbf{Set}}
+\newcommand{\cataff}{\textbf{Aff}}
+\newcommand{\Top}{\textbf{Top}}
+\newcommand{\Mfld}{\text{Mfld}}
+\newcommand{\Aff}{\textbf{Aff}}
+\newcommand{\Sp}{\text{Sp}}
+\newcommand{\Spc}{\text{Spc}}
+\newcommand{\Ealg}[1]{\mathbb{E}_{#1}\textbf{-Alg}}
+\newcommand{\Einfalg}{\mathbb{E}_{\infty}\textbf{-Alg}}
+\newcommand{\catsetfin}{\textbf{Set}_\text{fin}}
+\DeclareMathOperator{\Ring}{Ring}
+
+
+%other macros
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:}\text{[#1]}}}
+\newcommand{\citeme}[1]{\textcolor{blue}{\textbf{CITE ME:}\text{[#1]}}}
+\newcommand{\remove}[1]{\textcolor{orange}{\textbf{REMOVE?:}\text{[#1]}}}
+\newcommand{\ddd}{\cdot\cdot\cdot}
+
+
+%\title{$\delta$-rings}
+%\author{Calvin D. Woo}
+\begin{document}
+%\maketitle
+
+\section{the prismatic site}
+Fix a base prism $(A,I)$ as well as a formally smooth $A/I$-algebra $R$. The goal of prismatic cohomology is to produce a complex $\prism_{R/A}$ of $A$-modules with a "Frobenius" endomorphism $\phi_{R/A}$ such that
+\begin{itemize}
+\item $\prism_{R/A}/I$ is related to differential forms on $R$ relative to $A/I$.
+\item $\prism_{R/A}[1/p]$ is related to the $p$-adic etale cohomology of $R[1/p]$.
+\end{itemize}
+
+This complex will give a deformation between the algebraic de Rham cohomology of $R/(A/I)$ and the $p$-adic etale cohomology of $R[1/p]$ parameterized by $\Spec A$. To simplify things, we'll assume $(A,I)$ is a bounded prism and $I=(d)$ is generated by a distinguished element.
+
+\begin{example}
+Examples of base prisms to consider.
+
+\begin{enumerate}
+\item (crystalline) Let $A$ be any $p$-torsionfree, $p$-complete $\delta$-ring and $I=(p)$.
+\item (Breuil-Kisin-Fargues) Let $A=\Z_p[[u]]$ with $\phi(u)=u^p$, $I=E(u)$ for $E(u)$ any Eisenstein polynomial (e.g. $E(u)=u^p-p$).
+\item ($A_{\text{inf}}$) Let $R$ be a perfectoid ring and $(A,I)=(A_\text{inf}(R), \ker{\theta_R})$ be our perfect base prism.
+\end{enumerate}
+\end{example}
+
+The prismatic cohomology of $R$ will be defined akin to Grothendieckian crystalline cohomology-- by studying probes of $R$ with prisms over $(A,I)$. Formalizing this is the prismatic site.
+
+\begin{definition} The \textbf{prismatic site} $(R/A)_{\prism}$ of $R$ relative to $A$ is the category with objects given by prisms $(B,IB)$ over $(A,I)$ together with a map $R\ra B/IB$ over $A/I$. Diagrammatically, an object of this category looks like
+\[\begin{tikzcd}
+A\arrow[rr]\arrow[d]&&B\arrow[d]\\
+A/I\arrow[r]&R\arrow[r]&B/IB
+\end{tikzcd}\]
+We'll shorthand an element as $(R\ra B/IB\leftarrow B)\in (R/A)_{\prism}$ and endow it with the indiscrete Grothendieck topology, so that all presheaves are automatically sheaves.
+
+We get the standard prismatic structure sheaves $\Oh_{\prism}$ and $\bar{\Oh}_{\prism}$ by sending $(R\ra B/IB\leftarrow B)\in (R/A)_{\prism}$ to $B$ and $B/IB$ respectively.
+\end{definition}
+
+\begin{remark} Note that we should really be talking about the opposite of $(R/A)_{\prism}$ as we're working in the affine case. But it doesn't matter, there isn't too much confusion. Apparently, gluing sheaves in the affine case is easier, though I don't immediately see why.
+\end{remark}
+
+\begin{example}
+Three examples of the prismatic site.
+
+\begin{enumerate}
+\item Let $R=A/I$. Then $(R/A)_{\prism}$ is just then given as the category of prisms over $(A,I)$, and hence has an initial object given by the initial prism $(R\htpyeq A/I\leftarrow A)$.
+\item Let $R=A/I\langle x\rangle$ be the $p$-adic completion of $A/I[x]$. Then in this case $(R/A)_{\prism}$ has no initial object. But we would like to single out some special elements of the site. There is a formal smooth lift $\tilde{R}$ of $R/(A/I)$ with $\delta$-structure (given by $\tilde{R}=A[x]^{\sma}_{(p,x)}$). This gives us an object $(R\htpyeq B/IB\leftarrow B)$ in $(R/A)_{\prism}$. 
+\item (perfect prismatic site) Let $(A,I)$ be a perfect prism. As perfect prisms $\htpyeq$ perfectoid rings, we see that any map $R\ra S$ between perfectoids has a lift of the composite $A/I\ra R\ra S$ to a unique map $(A,I)\ra (A_{\text{inf}}(S),\ker{\theta_S})$ of prisms.
+
+In particular, the resulting diagram is an object in the prismatic site 
+\[ (R\ra S\leftarrow A_{\text{inf}}(S))\in (R/A)_{\prism}\]
+This construction gives us a fully-faithful functor from the category of perfectoid $R$-algebras to $(R/A)_{\prism}$ where the essential image $(R/A)_{\prism}^{\text{perf}}\subset (R/A)_{\prism}$ comprises those $(R\ra B/IB\leftarrow B)$ where $(B,IB)$ is a perfect prism. We call $(R/A)_{\prism}^{\text{perf}}$ the \textbf{perfect prismatic site}.
+\end{enumerate}
+\end{example}
+
+As with any situation involving the site-theoretic language, defining cohomology is then immediate.
+
+\begin{definition}[Prismatic cohomology] The \textbf{prismatic cohomology} of $R$ is defined to be the cohomology complex of the prismatic sheaf $\Oh_{\prism}$,
+\[	\prism_{R/A}=\RGamma((R/A)_{\prism},\Oh_{\prism})\in \mathbf{D}(A)	\]
+The Frobenius action on $\Oh_{\prism}$ gives a $\phi$-semilinear map $\prism_{R/A}\ra\prism_{R/A}$.
+
+The \textbf{Hodge-Tate cohomology} of $R$ is defined to be the cohomology of $\overline{\Oh}_{\prism}$
+\[	\overline{\prism}_{R/A}=\RGamma((R/A)_{\prism},\overline{\Oh}_{\prism})\in \mathbf{D}(R) \]
+Note that in this case we no longer have a Frobenius action.
+
+They both are commutative algebra objects in $\mathbf{D}(A)$ and $\prism_{R/A}\otimes^{\DerivedL}_A A/I\htpyeq \overline{\prism}_{R/A}$.
+\end{definition}
+
+When $R=A/I$, the prismatic site $(R/A)_{\prism}$ has an initial object so that $\prism_{R/A}\htpyeq A$ and $\overline{\prism}_{R/A}\htpyeq A/I$. Why is it called the prismatic site? One can visualize the prismatic site as a "prism", where $\Spec R$ goes through $\Spec A/I$ and out comes different cohomology theories. Ehh.
+
+\section{hodge-tate comparison}
+
+Let $B\ra C$ be a map of commutative rings. The algebraic de Rham complex
+\[	\Omega^*_{C/B}=(C\xra{d} \Omega^1_{C/B}\xra{d}\Omega^2_{C/B}\ra\cdots)	\]
+is a graded commutative $B$-dga with the universal property as the initial such object. We will use this universal property to set up a comparison morphism between this and our Hodge-Tate cohomology.
+
+Note that as $\overline{\prism}_{R/A}$ is a commutative algebra object in $\mathbf{D}$(R), the cohomology object $H^*(\overline{\prism}_{R/A})$ is a graded commutative $R$-algebra. To produce the comparison from the universal property, we need to endow $H^*(\overline{\prism}_{R/A})$ with a differential.
+
+Recall that $\Oh_{\prism}\tensor^{\DerivedL}_A A/I\htpyeq \overline{\Oh}_{\prism}$. This is a $A/I$-module. For any such module $M$, we define the \textbf{Breuil-Kisin twist} via $M\{n\}=M\tensor_{A/I}(I/I^2)^{\otimes n}$ (note that $I/I^2$ is an invertible $A/I$-module so this definition makes sense for all $n\in\Z$). The short exact sequence of $A/I$-modules
+\[	0\ra \overline{\Oh}_{\prism}\tensor_{A/I}I^{n+1}/I^{n+2}\ra \overline{\Oh}_{\prism}\tensor_{A/I}I^{n}/I^{n+2}\ra 
+	\overline{\Oh}_{\prism}\tensor_{A/I}I^{n}/I^{n+1}\ra 0	\]
+gives rise to the Bockstein for the cohomology exact sequence
+\[	\beta_I: H^i(\overline{\prism}_{R/A})\{i\}\ra H^{i+1}(\overline{\prism}_{R/A})\{i+1\}	\]
+It is a nuisance, but possible to check that the pair $(H^*(\overline{\prism}_{R/A})\{*\}, \beta_I)$ becomes a graded commutative $A/I$-dga and hence gets a comparison map
+
+\[ \eta_R^*:(\Omega^*_{R/(A/I)}, d_{\text{dR}})\ra (H^*(\overline{\prism}_{R/A})\{*\}, \beta_I)	\]
+
+\begin{thm}[Hodge-Tate comparison theorem] The above \textbf{Hodge-Tate comparison map} is an isomorphism of actual complexes.
+\end{thm}
+
+\section{computing prismatic cohomology}
+To prove the HT comparison theorem, we should know how to compute the cohomology of categories. Since in the indiscrete topology all presheaves are sheaves, our lives are a little bit easier.
+
+Let $\C$ be a small category, and let $\text{PShv}(\C)$ be the category of presheaves on $\C$ (the presheaf topos). Then $\RGamma(\C,-)$ is the derived functor $\mathbf{D}(\text{Ab}(\text{PShv}(\C)))\ra \mathbf{D}(\text{Ab})$ of
+\[	F\mapsto \invlim_{X\in\C} F(X)	\]
+In particular, if a final object existed in $\C$ it would be merely the cohomology of $F$ on that object.
+
+Cech theory gives us a recipe for computing such cohomology via a cosimplicial complex:
+
+\begin{lemma} Let $\C$ be a small category admitting finite non-empty products. Let $F$ be an abelian presheaf on $\C$. Assume that there is a \textbf{weakly final} object $X\in\C$ such that $\Hom(Y,X)\neq \emptyset$ for any $Y\in\C$. Then $\RGamma(\C,F)$ is computed by the cosimplicial complex
+\[\begin{tikzcd} F(X)\arrow[r, shift right=.7]\arrow[r, shift left=.7]& F(X\times X)
+	\arrow[r, shift right=1.4]\arrow[r]\arrow[r,shift left=1.4]&F(X\times X\times X)\cdots
+\end{tikzcd}\]
+which is $F$ applied to the simplicial Cech complex of $X$.
+\end{lemma}
+
+To use the lemma to compute prismatic cohomology we need to find a weakly final object $X$ in $(R/A)_{\prism}$ and to ensure that the prismatic site has finite non-empty coproducts (remember, our prismatic site is "opposite"). The analogous problem in crystalline cohomology is solved using divided-power envelopes. Here we need to create corresponding \textbf{prismatic envelopes} of $\delta$-pairs $(A,I)$.
+
+\begin{lemma} Let $(B,J)$ be a $\delta$-pair over $(A,I)$. Then there exists a universal map $(B,J)\ra (C,IC)$ to a prism over $(A,I)$.
+\end{lemma}
+
+Recall that to upgrade a $\delta$-pair into a prism, we need to turn the ideal into a Cartier divisor (relative to $(A,I)$). Inverting the generator of $I$ functorially as is done in the definition of the divided-power envelopes gives us our prismatic envelopes, which we denote by $C=B\{\frac{J}{I}\}^{\sma}$ (here we think of the notation saying that $C$ is the universal prism where $J$ becomes divisible by $I$).
+
+As a corollary, $(R/A)_{\prism}$ has finite nonempty coproducts: given a pair of objects 
+\[(R\ra B/IB\leftarrow B)\text{  and  }(R\ra C/IC\leftarrow C)\]
+in $(R/A)_{\prism}$, set $D_0=B\tensor_A C$. There are two natural maps $R\ra D_0/ID_0$ given by factoring through $B/IB$ and $C/IC$ respectively. These may not be the same map. To alleviate this, let
+\[	J=\ker(D_0\ra B/IB\otimes_{A/I} C/IC\ra B/IB\otimes_R C/IC)	\]
+This is the ideal generated by $x\tensor 1-1\tensor y$ where there exists $z\in R$ such that it reduces to $x$ in $B/IB$ and $y$ in $C/IC$.
+
+The prismatic envelope of the $\delta$-pair $(D_0,J)$ is the prism $(D,ID)=D_0\left\{\frac{J}{I}\right\}^{\sma}$ over $(A,I)$. The induced maps $R\ra D/ID$ coincide, so we get an object $(R\ra D/ID\leftarrow D)$ in the prismatic site $(R/A)_{\prism}$. This is the desired coproduct object.
+
+\todo{put in rest later}
+
+\section{derived prismatic cohomology}
+
+Our next goal is to use Quillen's formalism of non-abelian derived functors to extend the prismatic cohomology to (not necessarily smooth) $p$-adically complete $A/I$-algebras $R$. 
+
+Let $A$ be a commutative ring, and $\text{CAlg}_A$ the category of commutative $A$-algebras. Let $\text{Poly}_A\subset\text{CAlg}_A$ be the full subcategory spanned by polynomial $A$-algebras in finitely many variables. Since any finitely-generated polynomial ring is a projective object in $\text{CAlg}_A$, we can try to "derive" functors on $\text{Poly}_A$ to functors on all of $\text{CAlg}_A$ by applying our functors to "resolutions".
+
+Consider a functor $F:\text{Poly}_A\ra \text{Ab}\subset \textbf{D}(\text{Ab})$ where \textbf{D}(Ab) is the derived $\infty$-category of abelian groups. This admits all limits and colimits, and so we can perform left Kan extension along the inclusion $\text{Poly}_A\subset\text{CAlg}_A$.
+
+\begin{prop} There exists a unique extension $LF:\operatorname{CAlg}_A\ra\operatorname{\mathbf{D}(Ab)}$ such that
+\begin{enumerate}
+\item $LF$ commutes with filtered colimits.
+\item $LF$ commutes with geometric realizations, i.e. if $P_{\bullet}\ra B$ is a simplicial resolution of $B$ in $\text{CAlg}_A$, then $|LF(P_{\bullet})|\htpyeq LF(B)$.
+\end{enumerate}
+\end{prop}
+
+We call $LF$ the \textbf{left derived functor} of $F$. A historical reason why this construction turned up is in deriving the functor of Kahler differentials.
+
+\begin{definition} The \textbf{cotangent complex} $\DerivedL_{-/A}:\text{CAlg}_A\ra\textbf{D}(\text{Ab})$ is the left derived functor of $\text{Poly}_A\ra\text{Mod}_A\subset\textbf{D}(\text{Ab})$ given by $B\mapsto \Omega^1_{B/A}$.
+\end{definition}
+
+\begin{example} The cotangent complex has immense importance in deformation theory and algebraic geometry. We'll highlight a useful example.
+
+Suppose $A\ra B$ is a map of perfect $\F_p$-algebras. In particular the relative Frobenius is simultaneously an isomorphism and zero on the level of cotangent complexes. It follows that the cotangent complex vanishes, $\DerivedL_{B/A}\htpyeq 0$. Now let $C\ra D$ be a map of perfectoid rings. In this world, we care about phenomena after derived $p$-completion, so we ask what the derived $p$-completion of $\DerivedL_{D/C}$ is.
+
+But by derived Nakayama, it suffices to understand $\DerivedL_{D/C}\widehat{\tensor}_{\Z}\Z/p$, which is 0 by the previous claim. Hence for perfectoid rings, the derived $p$-completion of $\DerivedL_{D/C}$ vanishes.
+\end{example}
+
+Now let $k$ be a base ring of characteristic $p$. 
+
+\begin{definition} The \textbf{derived de Rham cohomology} functor $\dR_{-/k}:\text{CAlg}_k\ra\textbf{D}(k)$ is the left derived functor of $\text{Poly}_k\ra\textbf{D}(k)$ given by $R\mapsto \Omega^*_{R/k}$.
+\end{definition}
+
+Let $\Fun(\N, \textbf{D}(k))$ be the filtered derived $\infty$-category of diagrams of the form $\{F_n\}=\{F_0\ra F_1\ra F_2\ra \ddd\}$. We call the functor sending $\{F_n\}$ to $F_{\infty}=\colim_n F_n$ the "underlying object" functor.
+
+\begin{prop}[Derived Cartier isomorphism] Derived de Rham cohomology $\dR:\operatorname{CAlg}_k\ra\operatorname{\mathbf{D}(k)}$ admits a lift to the filtered derived $\infty$-category, given by the conjugate filtration $\Fil^{\text{conj}}$
+\[\begin{tikzcd}
+& \Fun(\N,\mathbf{D}(k))\arrow[d]\\
+\operatorname{CAlg}_k\arrow[r,"\dR_{-/k}"']\arrow[ur, "\Fil^{\operatorname{conj}}", dashed]& \mathbf{D}(k)
+\end{tikzcd}\]
+with canonical identifications of the graded pieces $\gr^i_{\operatorname{conj}}\dR_{R/k}\htpyeq \wedge^i\DerivedL_{R^{(1)}/k}[-i]$.
+\end{prop}
+\begin{proof}
+For smooth (or even more elementarily, polynomial) algebras, the de Rham complex $\Omega^*_{R/k}$ has a canonical filtration (the \textbf{conjugate filtration}) given by $\Fil^{\text{conj}}_i\Omega^*_{R/k}=\tau^{\le i}\Omega^*_{R/k}$. Note that this is an increasing filtration given by
+\[	\Fil^{\text{conj}}_i\Omega^*_{R/k} = (R\ra \Omega^1_{R/k}\ra\ddd\ra \Omega^{i-1}_{R/k}\ra\ker(d:\Omega^i_{R/k}\ra\Omega^{i+1}_{R/k})\ra 0 \ra\ddd)	\]
+The non-derived Cartier isomorphism gives us natural isomorphisms $\gr^i_{\operatorname{conj}}\htpyeq \Omega^i_{R^{(1)}/k}[-i]$ for all $i\ge 0$. This gives a lift of the de Rham complex functor to $\text{Poly}_k\ra \Fun(\N,\textbf{D}(k))$. As the functors involved are colimit-preserving, passing to left derived functors give the proposition.
+\end{proof}
+
+As a corollary, by the natural isomorphism on graded parts we see that for smooth $k$-algebras $R$, the derived de Rham complex is classical, $\dR_{R/k}\htpyeq \Omega^*_{R/k}$.
+
+\begin{example}(Regular semiperfect rings) Let $k$ be a perfect ring, $S$ a $k$-algebra of the form $R/I$ where $R$ is a perfect $k$-algebra and $I\subset R$ is an ideal generated by a regular sequence. Such rings are called \textbf{regular semiperfect}. The point is that these rings are not smooth, but still have nice properties in the \textit{derived world}.
+
+By the transitivity triangle for $k\ra R\ra S$, we have $\DerivedL_{S/k}\htpyeq\DerivedL_{S/R}$ (since by perfection, $\DerivedL_{R/k}\htpyeq 0$). Since $I$ is generated by a regular sequence, it's cotangent complex is simple to describe: $\DerivedL_{S/R}\htpyeq I/I^2[1]$. By the Quillen shift formula, $\wedge^i\DerivedL_{S/R}\htpyeq\Gamma^i_R(I/I^2)[i]$. In particular, $\wedge^i\DerivedL_{S/R}[-i]$ is concentrated in degree 0.
+\end{example}
+
+\begin{remark} In characteristic 0, there is no Cartier isomorphism and so the above filtration doesn't give us anything. In particular, for $k$ of characteristic 0, the Poincare lemma states for that for any polynomial $k$-algebra $R$, $k\htpyeq \Omega^*_{R/k}$, and so $k\htpyeq\dR_{R/k}$. To fix this in characteristic 0, we must "force the Hodge filtration to converge", i.e. we complete the derived de Rham complex with respect to the Hodge filtration.
+\end{remark}
+
+Now we can turn our attention towards derived prismatic cohomology. Let $(A,I)$ be a bounded prism. Let $R$ be a formally smooth $A/I$-algebra. Let $\textbf{D}_{\text{comp}}(A)$ be the category of $(p,I)$-complete commutative algebra objects in $\textbf{D}(A)$.
+
+\begin{definition}[Derived prismatic cohomology] The \textbf{derived prismatic cohomology} functor 
+\[	L\prism_{-/A}: \text{CAlg}_{A/I}\ra \textbf{D}_{\text{comp}}(A)\]
+is the left derived functor of $\text{Poly}_{A/I}\ra\textbf{D}_{\text{comp}}(A)$ given by $R\ra \prism_{\widehat{R}/A}$, where $\widehat{R}$ is the $p$-adic completion of $R$.
+
+Similarly we have the \textbf{derived Hodge-Tate cohomology} $L\overline{\prism}_{R/A}=L\prism_{R/A}\tensor^{\DerivedL}_A A/I$.
+\end{definition}
+
+The main point of the derived prismatic cohomology is that we get a derived version of the Hodge-Tate comparison.
+
+\begin{prop} For any $R\in\operatorname{CAlg}_{A/I}$, we have an increasing exhaustive filtration $\Fil^{\operatorname{HT}}_*$ on $L\overline{\prism}_{R/A}$ such that
+\[	\gr_i^{\operatorname{HT}}(L\overline{\prism}_{R/A}) \htpyeq \wedge^i\DerivedL_{R/(A/I)}[-i]	\]
+\end{prop}
+
+Analogously as for the derived de Rham complex, we have an extension of the prismatic theory that works from (formally) smooth algebras to a larger class of semiperfectoids.
+
+\begin{example} Let $(A,(d))$ be a perfect prism, $S$ an $A/(d)$-algebra of the form $R/J$ for $R$ a perfectoid $A/(d)$-algebra and $J\subset R$ an ideal generated by a regular sequence. Such rings are called \textbf{regular semiperfectoid}. By the Hodge-Tate comparison, the graded pieces are described easily as the cotangent complex works well with such quotients. It follows that $\overline{\prism}_{S/A}$ is concentrated in degree 0 and is given by a $p$-completely flat $A$-algebra.
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
